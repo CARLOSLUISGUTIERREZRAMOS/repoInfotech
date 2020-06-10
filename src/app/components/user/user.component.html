@@ -1,0 +1,62 @@
+<div class="container mt-5">
+
+    <h3>Listado de Usuarios</h3>
+
+    <table class="table">
+        <thead>
+            <th>Name</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th></th>
+            <th></th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of users">
+                <td>{{ user.name }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.phone }}</td>
+                <td>
+                    <button type="button" class="btn btn-primary" (click)="openModal(template, user)">
+                        <fa-icon [icon]="faUserEdit"></fa-icon>
+                            Editar</button>
+                </td>
+                <td><button class="btn btn-danger"(click)="eliminar(user.id)">
+                    <fa-icon [icon]="faTrash"></fa-icon>
+                     Eliminar</button></td>
+            </tr>
+        </tbody>
+    </table>
+    
+</div>
+
+<ng-template #template>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Registro de Usuario</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <form>
+            <div class="form-group">
+              <label for="">Ingrese Nombre</label>
+              <input type="name" class="form-control" [value]="user.name">
+            </div>
+            <div class="form-group">
+              <label for="">Ingrese Nombre de Usuario</label>
+              <input type="usuario" class="form-control" [value]="user.username">
+            </div>
+            <div class="form-group">
+              <label for="">Ingrese Email</label>
+              <input type="email" class="form-control" [value]="user.email">
+            </div>
+            <div class="form-group">
+              <label for="">Ingrese Teléfono</label>
+              <input type="telefono" class="form-control" [value]="user.phone">
+            </div>
+            <button type="submit" class="btn btn-success" (click)="registrar(user.username)">Guardar</button>
+        </form>
+    </div>
+</ng-template>
